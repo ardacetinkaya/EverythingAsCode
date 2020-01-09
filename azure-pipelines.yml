@@ -28,7 +28,7 @@ stages:
 - stage: PrepareArtifact
   jobs:
   - job: 'PreparaArtifact'
-    displayName: 'Prepare artifact'
+    displayName: 'Prepare artifact to be deployed'
     pool:
       vmImage: 'ubuntu-latest'
     variables:
