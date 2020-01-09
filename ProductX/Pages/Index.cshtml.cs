@@ -19,7 +19,7 @@ namespace ProductX.Pages
         {
             _logger = logger;
 
-            _customer = config["Customer"];
+            _customer = config["CustomerName"];
         }
 
         public void OnGet()
