@@ -8,6 +8,7 @@ provider "azurerm" {
 locals {
   customer        ="__CUSTOMER__"
   apikey          ="__APIKEY__"
+  version         ="__VERSION__"
 }
 
 resource "random_password" "dbpassword" {
@@ -73,6 +74,7 @@ resource "azurerm_app_service" "someproduct" {
   app_settings = {
     "APIKey"       = "${local.apikey}"
     "CustomerName" = "${local.customer}"
+    "Version"      = "${local.version}"
   }
 
   connection_string {
