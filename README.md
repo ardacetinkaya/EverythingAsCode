@@ -41,6 +41,8 @@ A web-based solution can be easily deployed into a cloud platform per customer w
 
 ## Everything as Code ##
 
-Solution as a code, infrastructure as a code, build as a code and deployment as a code...
+Solution as a code, infrastructure as a code, build as a code and deployment as a code.😀
+
+
 
 
