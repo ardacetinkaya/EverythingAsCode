@@ -1,8 +1,3 @@
-locals {
-  customer        ="__CUSTOMER__"
-  apikey          ="__APIKEY__"
-}
-
 provider "azurerm" {
   version = "=1.38.0"
   subscription_id = "__SUBSCRIPTION_ID__"
@@ -10,7 +5,10 @@ provider "azurerm" {
   client_secret   = "__CLIENT_SECRET__"
   tenant_id       = "__TENANT_ID__"
 }
-
+locals {
+  customer        ="__CUSTOMER__"
+  apikey          ="__APIKEY__"
+}
 
 resource "random_password" "dbpassword" {
   length           = 16
