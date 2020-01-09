@@ -14,17 +14,20 @@ namespace ProductX.Pages
         private readonly ILogger<IndexModel> _logger;
 
         private readonly string _customer = string.Empty;
-
+        private readonly string _version = string.Empty;
         public IndexModel(ILogger<IndexModel> logger, IConfiguration config)
         {
             _logger = logger;
 
             _customer = config["CustomerName"];
+            _version = config["Version"];
         }
 
         public void OnGet()
         {
             ViewData["Customer"] = _customer;
+            ViewData["Version"] = _version;
+
         }
     }
 }
