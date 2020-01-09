@@ -22,7 +22,7 @@ resource "azurerm_resource_group" "someproduct" {
 }
 
 resource "azurerm_sql_server" "someproduct" {
-  name                         = "${local.customer}-someproduct-sqlserver"
+  name                         = "${lower(local.customer)}-someproduct-sqlserver"
   resource_group_name          = "${azurerm_resource_group.someproduct.name}"
   location                     = "${azurerm_resource_group.someproduct.location}"
   version                      = "12.0"
@@ -31,7 +31,7 @@ resource "azurerm_sql_server" "someproduct" {
 }
 
 resource "azurerm_sql_database" "someproduct" {
-  name                             = "${local.customer}-someproductdb"
+  name                             = "${lower(local.customer)}-someproductdb"
   resource_group_name              = "${azurerm_resource_group.someproduct.name}"
   location                         = "${azurerm_resource_group.someproduct.location}"
   server_name                      = "${azurerm_sql_server.someproduct.name}"
