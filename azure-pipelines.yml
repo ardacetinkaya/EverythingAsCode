@@ -5,12 +5,11 @@ stages:
 - stage: Build
   jobs:
   - job: 'Build'
+    displayName: 'Build the product'
     pool:
       vmImage: 'ubuntu-latest'
-
     variables:
       buildConfiguration: 'Release'
-
     steps:
         - task: UseDotNet@2
           displayName: 'Use .Net Core'
@@ -25,6 +24,16 @@ stages:
             publishWebProjects: true
             arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
             zipAfterPublish: True
+
+- stage: PrepareArtifact
+  jobs:
+  - job: 'PreparaArtifact'
+    displayName: 'Prepare artifact'
+    pool:
+      vmImage: 'ubuntu-latest'
+    variables:
+      buildConfiguration: 'Release'
+    steps:
         - task: CopyFiles@2
           displayName: 'Copy files'
           inputs:
