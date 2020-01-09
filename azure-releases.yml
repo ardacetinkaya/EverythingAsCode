@@ -1,0 +1,48 @@
+
+# Replace token with variables
+steps:
+- task: qetza.replacetokens.replacetokens-task.replacetokens@3
+  displayName: 'Replace tokens'
+  inputs:
+    targetFiles: '**/*.tf'
+    escapeType: none
+    tokenPrefix: '__'
+    tokenSuffix: '__'
+
+
+steps:
+- task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
+  displayName: 'Install Terraform 0.12.3'
+  
+steps:
+- task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV1@0
+  displayName: 'Terraform : init'
+  inputs:
+    workingDirectory: '$(System.DefaultWorkingDirectory)/drop/drop/Infrastructure'
+    backendAzureRmResourceGroupName: STORAGE_RESOURCE_GROUP_NAME
+    backendAzureRmStorageAccountName: STORAGE_NAME
+    backendAzureRmContainerName: Infrastructure
+    backendAzureRmKey: terraform.tfstate
+ 
+steps:
+- task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV1@0
+  displayName: 'Terraform : plan'
+  inputs:
+    command: plan
+    workingDirectory: '$(System.DefaultWorkingDirectory)/drop/drop/Infrastructure'
+
+steps:
+- task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV1@0
+  displayName: 'Terraform : apply'
+  inputs:
+    command: apply
+    workingDirectory: '$(System.DefaultWorkingDirectory)/drop/drop/Infrastructure'
+    commandOptions: '-auto-approve'
+
+
+steps:
+- task: AzureRmWebAppDeployment@4
+  displayName: 'Azure App Service Deploy'
+  inputs:
+    appType: webAppLinux
+    WebAppName: '$(CUSTOMER)-someproduct-app'
