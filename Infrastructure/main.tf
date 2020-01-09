@@ -15,10 +15,6 @@ provider "azurerm" {
   tenant_id       = "${local.tenant_id}"
 }
 
-locals {
-  customer="test"
-  apikey=""
-}
 
 resource "random_password" "dbpassword" {
   length           = 16
