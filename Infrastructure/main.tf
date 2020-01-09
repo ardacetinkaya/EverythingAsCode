@@ -27,7 +27,7 @@ resource "random_password" "dbpassword" {
 }
 
 resource "azurerm_resource_group" "someproduct" {
-  name     = "${var.customer}-someproduct-resources"
+  name     = "${local.customer}-someproduct-resources"
   location = "West Europe"
 }
 
@@ -72,7 +72,7 @@ resource "azurerm_app_service_plan" "someproduct" {
 }
 
 resource "azurerm_app_service" "someproduct" {
-  name                = "${var.customer}-someproduct-app"
+  name                = "${local.customer}-someproduct-app"
   location            = "${azurerm_resource_group.someproduct.location}"
   resource_group_name = "${azurerm_resource_group.someproduct.name}"
   app_service_plan_id = "${azurerm_app_service_plan.someproduct.id}"
@@ -81,8 +81,8 @@ resource "azurerm_app_service" "someproduct" {
   }
 
   app_settings = {
-    "APIKey"       = "${var.apikey}"
-    "CustomerName" = "${var.customer}"
+    "APIKey"       = "${local.apikey}"
+    "CustomerName" = "${local.customer}"
   }
 
   connection_string {
