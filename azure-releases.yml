@@ -9,11 +9,12 @@ steps:
     tokenPrefix: '__'
     tokenSuffix: '__'
 
-
+# Install Terraform for infrastructure configurations
 steps:
 - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
   displayName: 'Install Terraform 0.12.3'
-  
+
+# Init command for Terraform configuration files
 steps:
 - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV1@0
   displayName: 'Terraform : init'
@@ -23,7 +24,8 @@ steps:
     backendAzureRmStorageAccountName: STORAGE_NAME
     backendAzureRmContainerName: Infrastructure
     backendAzureRmKey: terraform.tfstate
- 
+
+# Plan configurations and display them
 steps:
 - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV1@0
   displayName: 'Terraform : plan'
@@ -31,6 +33,7 @@ steps:
     command: plan
     workingDirectory: '$(System.DefaultWorkingDirectory)/drop/drop/Infrastructure'
 
+# Apply infrastructure configuration
 steps:
 - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV1@0
   displayName: 'Terraform : apply'
@@ -39,7 +42,7 @@ steps:
     workingDirectory: '$(System.DefaultWorkingDirectory)/drop/drop/Infrastructure'
     commandOptions: '-auto-approve'
 
-
+# Deploy application to Azure App Service which is created with infrastructure configuration
 steps:
 - task: AzureRmWebAppDeployment@4
   displayName: 'Azure App Service Deploy'
