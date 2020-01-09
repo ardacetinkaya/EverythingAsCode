@@ -23,9 +23,21 @@ Implementation scenario;
 - Create Azure DevOps Pipelines to build and prepare product versions
 - Create release flow to apply Terraflow configurations to create infrastructure and application deployment per customer
 
+<p align="center">
+    <img src="https://github.com/ardacetinkaya/EverythingAsCode/blob/master/Images/EaC-1.png" height="350px" />
+</p>
+
+<p align="center">
+    <img src="https://github.com/ardacetinkaya/EverythingAsCode/blob/master/Images/EaC-2.png" />
+</p>
+
 ## Result ##
 
 A web-based solution can be easily deployed into a cloud platform per customer with different configurations and versions. 
+
+<p align="center">
+    <img src="https://github.com/ardacetinkaya/EverythingAsCode/blob/master/Images/EaC-0.png" />
+</p>
 
 ## Everything as Code ##
 
