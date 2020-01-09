@@ -22,7 +22,7 @@ resource "azurerm_resource_group" "someproduct" {
 }
 
 resource "azurerm_sql_server" "someproduct" {
-  name                         = "someproduct-sqlserver"
+  name                         = "${local.customer}-someproduct-sqlserver"
   resource_group_name          = "${azurerm_resource_group.someproduct.name}"
   location                     = "${azurerm_resource_group.someproduct.location}"
   version                      = "12.0"
@@ -31,7 +31,7 @@ resource "azurerm_sql_server" "someproduct" {
 }
 
 resource "azurerm_sql_database" "someproduct" {
-  name                             = "someproductdb"
+  name                             = "${local.customer}-someproductdb"
   resource_group_name              = "${azurerm_resource_group.someproduct.name}"
   location                         = "${azurerm_resource_group.someproduct.location}"
   server_name                      = "${azurerm_sql_server.someproduct.name}"
@@ -42,7 +42,7 @@ resource "azurerm_sql_database" "someproduct" {
 }
 
 resource "azurerm_sql_firewall_rule" "someproduct" {
-  name                = "allow-azure-services"
+  name                = "${local.customer}-allow-azure-services"
   resource_group_name = "${azurerm_resource_group.someproduct.name}"
   server_name         = "${azurerm_sql_server.someproduct.name}"
   start_ip_address    = "0.0.0.0"
@@ -50,7 +50,7 @@ resource "azurerm_sql_firewall_rule" "someproduct" {
 }
 
 resource "azurerm_app_service_plan" "someproduct" {
-  name                = "someproduct-appserviceplan"
+  name                = "${local.customer}-someproduct-appserviceplan"
   location            = "${azurerm_resource_group.someproduct.location}"
   resource_group_name = "${azurerm_resource_group.someproduct.name}"
   kind                = "Linux"
