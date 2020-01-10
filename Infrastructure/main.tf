@@ -1,9 +1,9 @@
 provider "azurerm" {
   version = "=1.38.0"
-  subscription_id = "__SUBSCRIPTION_ID__"
-  client_id       = "__CLIENT_ID__"
-  client_secret   = "__CLIENT_SECRET__"
-  tenant_id       = "__TENANT_ID__"
+  subscription_id = "__SUBSCRIPTION-ID__"
+  client_id       = "__CLIENT-ID__"
+  client_secret   = "__CLIENT-SECRET__"
+  tenant_id       = "__TENANT-ID__"
 }
 locals {
   customer        ="__CUSTOMER__"
